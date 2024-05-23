@@ -20,7 +20,7 @@ function LoginPage(props) {
             setErrorMessage('');
 
             // Send login request to server
-            const response = await axios.post('http://localhost:3000/login', { username, password });
+            const response = await axios.post('https://designlogin.vercel.app/', { username, password });
 
             // If login successful, redirect to MainPage
             if (response.status === 200) {
