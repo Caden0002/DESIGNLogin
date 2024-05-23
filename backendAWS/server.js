@@ -4,9 +4,9 @@ const cors = require('cors');
 
 const db = mysql.createPool({
   connectionLimit: 10, // Adjust as needed
-  host: 'designlogin.cpwygia6ohc6.ap-southeast-2.rds.amazonaws.com', // Replace 'your-rds-endpoint' with the endpoint of your AWS RDS instance
-  user: 'admin', // Replace 'your-username' with the username for your AWS RDS instance
-  password: '7C&2Fp9*Lx', // Replace 'your-password' with the password for your AWS RDS instance
+  host: 'designlogin.cpwygia6ohc6.ap-southeast-2.rds.amazonaws.com',
+  user: 'admin',
+  password: '7C&2Fp9*Lx',
   database: 'DESIGNLogin',
   port: 3306,
 });
@@ -16,9 +16,21 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Route to fetch data from the database
+app.get('/data', (req, res) => {
+  const sql = 'SELECT * FROM Users'; // Query to fetch all data from the Users table
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({ message: 'An error occurred while processing your request.' });
+    } else {
+      res.status(200).json(result); // Send the fetched data as a JSON response
+    }
+  });
+});
+
+// Route to handle login requests
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-
   const sql = 'SELECT * FROM Users WHERE username = ? AND password = ?';
   db.query(sql, [username, password], (err, result) => {
     if (err) {
