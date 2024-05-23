@@ -1,6 +1,12 @@
 {
   "version": 2,
+  "builds": [
+    { "src": "frontendVercel/package.json", "use": "@vercel/static-build" },
+    { "src": "backendAWS/package.json", "use": "@vercel/node" }
+  ],
   "routes": [
-    { "src": "/(.*)", "dest": "/server.js" }
+    { "handle": "filesystem", "src": "/frontendVercel/(.*)", "dest": "/frontendVercel/$1" },
+    { "handle": "filesystem", "src": "/backendAWS/(.*)", "dest": "/backendAWS/$1" },
+    { "src": "/(.*)", "dest": "/backendAWS/server.js" }
   ]
 }
