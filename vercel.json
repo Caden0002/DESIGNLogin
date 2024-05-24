@@ -1,7 +1,7 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/api/(.*)", "dest": "/backendAWS/server.js" },
-    { "src": "/(.*)", "dest": "/frontendVercel/index.html" }
+    { "src": "/(.*)": "/backendAWS/server.js" },
   ]
 }
+
