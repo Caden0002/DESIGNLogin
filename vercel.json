@@ -1,7 +1,6 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/(.*)": "/backendAWS/server.js" },
+    { "src": "/(.*)", "dest": "/backendAWS/server.js" }
   ]
 }
-
