@@ -20,7 +20,7 @@ function LoginPage(props) {
             setErrorMessage('');
 
             // Send login request to server
-            const response = await axios.post('https://designlogin.onrender.com/', { username, password });
+            const response = await axios.post('https://designlogin.onrender.com/login', { username, password });
 
             // If login successful, redirect to MainPage
             if (response.status === 200) {
